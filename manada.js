@@ -1,17 +1,28 @@
+function Animal(){
+	this.barulho="";
+}
+
 function Cachorro(){
 	this.barulho="Au";
+	Animal.call(this);
 }
 
 function Gato(){
 	this.barulho="Miau";
+	Animal.call(this);
+}
+
+
+function Manada(){
+	lista=[];
+
+	this.adicionar=function(x){
+		lista.push(x);
+	}	
+	console.log(lista.length)
 }
 
 function ManadaVirgula(){
-	lista = [];
-	
-	this.adicionar=function(x){
-		lista.push(x);
-	}
 
 	this.barulhos=function(){
 		s="";
@@ -25,14 +36,10 @@ function ManadaVirgula(){
 		return s;
 	}
 
+	Manada.call(this);
 }
 
 function ManadaSustenidaDupla(){
-	listaSustenida = [];
-	
-	this.adicionar=function(x){
-		listaSustenida.push(x);
-	}
 
 	this.barulhos=function(){
 		s="";
@@ -45,10 +52,17 @@ function ManadaSustenidaDupla(){
 		}
 		return s;
 	}
+
+	Manada.call(this);
 }
 
 
+Gato.prototype = new Animal();
+Cachorro.prototype = new Animal();
+ManadaVirgula.prototype = new Manada();
+ManadaSustenidaDupla.prototype = new Manada();
 
+/////////////////////////////////////////////////////////////////////
 
 var manadaVirgula = new ManadaVirgula();
 var manadaSustenidaDupla = new ManadaSustenidaDupla();
