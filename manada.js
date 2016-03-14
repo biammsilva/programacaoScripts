@@ -2,74 +2,73 @@ function Animal(){
 	this.barulho="";
 }
 
+
 function Cachorro(){
-	this.barulho="Au";
 	Animal.call(this);
+	this.barulho="Au";
 }
 
 function Gato(){
-	this.barulho="Miau";
 	Animal.call(this);
+	this.barulho="Miau";
 }
 
 
 function Manada(){
-	lista=[];
+	this.lista=[];
 }
 
 Manada.prototype = {
 	adicionar: function(x){
-		lista.push(x);
+		this.lista.push(x);
 	}	
 }
 
-function ManadaVirgula(){
+function ManadaVirgula(){;
+}
 
-	this.barulhos=function(){
-		s="";
-		for (var i = 0; i<lista.length; i++) {
-			if (i!=lista.length-1) {
-				s+=lista[i].barulho+", ";
-			}else{
-				s+=lista[i].barulho;
-			}
+
+
+ManadaVirgula.prototype = new Manada();
+ManadaVirgula.prototype.barulhos=function(){
+	var s="";
+	for (var i = 0; i<lista.length; i++) {
+		if (i!=lista.length-1) {
+			s+=lista[i].barulho+", ";
+		}else{
+			s+=lista[i].barulho;
 		}
-		return s;
 	}
-
-	Manada.call(this);
+	return s;
 }
 
 function ManadaSustenidaDupla(){
+}
 
-	this.barulhos=function(){
-		s="";
-		for (var i = 0; i<lista.length; i++) {
-			if (i!=lista.length-1) {
-				s+=lista[i].barulho+"# "+lista[i].barulho+"# ";
-			}else{
-				s+=lista[i].barulho+"# "+lista[i].barulho;
-			}
+ManadaSustenidaDupla.prototype = new Manada();
+ManadaSustenidaDupla.prototype.barulhos=function(){
+	var s="";
+	for (var i = 0; i<lista.length; i++) {
+		if (i!=lista.length-1) {
+			s+=lista[i].barulho+"# "+lista[i].barulho+"# ";
+		}else{
+			s+=lista[i].barulho+"# "+lista[i].barulho;
 		}
-		return s;
 	}
-
-	Manada.call(this);
+	return s;
 }
 
 
 Gato.prototype = new Animal();
 Cachorro.prototype = new Animal();
-ManadaVirgula.prototype = new Manada();
-ManadaSustenidaDupla.prototype = new Manada();
 
 /////////////////////////////////////////////////////////////////////
 
 var manadaVirgula = new ManadaVirgula();
 var manadaSustenidaDupla = new ManadaSustenidaDupla();
-var animais = [new Cachorro(), new Gato()];
+var lista = [new Cachorro(), new Gato()];
 
-animais.forEach(function (animal) {
+lista.forEach(function (animal) {
   manadaVirgula.adicionar(animal);
   manadaSustenidaDupla.adicionar(animal);
 });
