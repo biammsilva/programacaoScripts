@@ -15,11 +15,12 @@ function Gato(){
 
 function Manada(){
 	lista=[];
+}
 
-	this.adicionar=function(x){
+Manada.prototype = {
+	adicionar: function(x){
 		lista.push(x);
 	}	
-	console.log(lista.length)
 }
 
 function ManadaVirgula(){
